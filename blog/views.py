@@ -1,17 +1,21 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
 
-# """
-# request = обьект класса HttpRequest, который формирует из запроса от клиента на наш сервер 
-# """
-
-
-def get_hello(request):
-    return HttpResponse("Hello", headers={"Name": "Alex"}, status=500)
-
-def get_contact(request):
-    return HttpResponse("number")
+def get_index(request):
+    context = {
+        "title" : "Главная страница",
+        "my_list" : [1, 2, 3, 4, 5]
+    }
+    return render(request, "blog/index.html", context=context)
+    
 
 def get_about(request):
-    return HttpResponse("about")
+    context = {
+        "title" : "Страница о нас"
+    }
+    return render(request, "blog/about.html", context=None)
+
+def get_contacts(request):
+    context = {
+        "title" : "Как с нами связаться"
+    }
+    return render(request, "blog/contacts.html", context=None)
