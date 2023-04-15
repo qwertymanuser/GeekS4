@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+страница
+{% endblock %}
 {% block content %}
     <div class="card" style="width: 18rem;">
   <div class="card-body">
@@ -8,6 +11,19 @@
 
   </div>
 </div>
+    <br>
+    <form action="{% url 'post-delete' post.pk%}" method="get">
+      
+    {% csrf_token %}
+    <a href="{% url 'post-delete-confirm' post.id %}"><button>Удалить пост</button></a>
+    </form>
+    <br>
+
+  </div>
+</div>
+    <br>
+
+    <a href="{% url 'post-update' post.id %}"><button>Обновить запись</button></a>
     <br>
 
     <a href="{% url 'index-page' %}">На главную</a>

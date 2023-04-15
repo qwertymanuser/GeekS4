@@ -1,15 +1,10 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from blog.models import Post
 
 
 class BlogViewTestCase(TestCase):
     def setUp(self):
         self.client = Client()
- 
-        
-    
-
 
     def test_index(self):
         response = self.client.get(reverse("index-page"))
@@ -26,13 +21,12 @@ class BlogViewTestCase(TestCase):
         self.assertTemplateUsed(response, "blog/contacts.html")
         self.assertEqual(200, response.status_code)
 
-
-    def test_delete_post(self):
-        response = self.client.get(reverse("delete-view"))
-        self.assertTemplateUsed(response, "blog/delete_post.html")
+    def test_post_update(self):
+        response = self.client.get(reverse("post-update"))
+        self.assertTemplateUsed("blog/post_update.html")
         self.assertEqual(200, response.status_code)
 
-    def test_update_post(self):
-        response = self.client.get(reverse("update-view"))
-        self.assertTemplateUsed(response, "blog/update_post.html")
+    def test_post_create(self):
+        response = self.client.get(reverse("post-create"))
+        self.assertTemplateUsed("blog/post_create.html")
         self.assertEqual(200, response.status_code)
