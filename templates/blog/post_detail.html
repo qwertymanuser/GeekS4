@@ -12,6 +12,24 @@
   </div>
 </div>
     <br>
+<form action="" method="post">
+  {% csrf_token %}
+    <label for="username_input">Введите имя:</label><br>
+    <input type="text" name=""><br>
+
+    <label for="username_input">Введите комментарий:</label><br>
+    <input type="text" name=""><br>
+    <br>
+    <button type="submit">Оставить комментарий</button><br><br>
+    <br>
+</form>
+
+    {% for comment in post.post_comment.all %}
+      <h3>{{ comment.username }}</h3>
+      <5>{{ comment.created }}</5>
+      <p>{{ comment.text }}</p>
+      <hr>
+    {% endfor %}
     <form action="{% url 'post-delete' post.pk%}" method="get">
       
     {% csrf_token %}
